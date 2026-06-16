@@ -1,0 +1,16 @@
+{
+  "name": "amazon-review-analyst-course",
+  "version": "1.0.0",
+  "description": "60-minute internal training course on Consumer Insights via Amazon review analysis. Slidev deck with embedded Lottie animations and a live demo iframe.",
+  "scripts": {
+    "dev": "slidev --port 4000 --open",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.49.0",
+    "@slidev/theme-default": "^0.25.0",
+    "vue3-lottie": "^1.1.10"
+  },
+  "private": true
+}

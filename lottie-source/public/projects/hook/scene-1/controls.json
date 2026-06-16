@@ -1,0 +1,7 @@
+{
+  "controls": [
+    { "sid": "bgColor", "label": "Background" },
+    { "sid": "starGold", "label": "Star gold" },
+    { "sid": "starGray", "label": "Star gray" }
+  ]
+}
