@@ -23,6 +23,10 @@ index: 00 / 47
 
 <p class="cinema__sub">基于 Amazon 评论分析 · 一个细节如何让评分 4.2 变 4.7</p>
 
+<!--
+哈哈哈
+-->
+
 ---
 layout: lottie-stage
 variant: paper
@@ -43,11 +47,18 @@ index: 02 / 47
 
 <p class="cinema__sub">今天这堂课结束之前，你们会知道答案。</p>
 
+<div style="position: absolute; bottom: 56px; left: 56px; right: 56px; display: flex; justify-content: center; gap: 16px;">
+  <span v-click style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.32); border-radius: 999px; font-size: 12px; color: var(--cyan-deep);">⭐ 4.2 → 4.7</span>
+  <span v-click style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.32); border-radius: 999px; font-size: 12px; color: var(--cyan-deep);">📦 销量 ×3</span>
+  <span v-click style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.32); border-radius: 999px; font-size: 12px; color: var(--cyan-deep);">⚡ 只改了一个细节</span>
+</div>
+
 ---
 layout: poll
-url: https://forms.gle/replace-with-your-form
+poll: warmup-first-step
 eyebrow: Warm-up
 variant: paper
+index: 03 / 47
 ---
 
 如果老板给你 50 万做下一个品类，<br/>你<span style="color: var(--cyan-deep);">第一步</span>会做什么？
@@ -63,16 +74,9 @@ index: 04 / 47
 
 <p class="cinema__sub">Consumer Insights · 消费者洞察 · 5 min</p>
 
----
-layout: cinema-quote
-variant: ink
-eyebrow: Premise
-index: 05 / 47
----
-
-消费者从来不会主动告诉你他们想要什么——
-
-但他们会在评论区把想法全写出来。
+<blockquote style="margin-top: 36px; padding: 0 24px; border-left: 3px solid var(--cyan); font-family: var(--font-serif); font-style: italic; font-size: 18px; line-height: 1.5; color: var(--ink-soft); max-width: 640px; text-align: left;">
+  "消费者从来不会主动告诉你他们想要什么——<br/>但他们会在评论区把想法全写出来。"
+</blockquote>
 
 ---
 layout: editorial
@@ -221,28 +225,10 @@ page: 13 / 47
 </div>
 
 ---
-layout: editorial
-module: Module 02 · Why reviews
-page: 14 / 47
----
-
-<h1 class="editorial__headline">没有<br/>评论分析<br/>会怎样？</h1>
-
-<div style="display: flex; flex-direction: column; gap: 12px; font-family: var(--font-display); font-size: 28px; margin-top: 24px;">
-  <div v-click>靠感觉选品</div>
-  <div style="color: var(--mist);" v-click>↓</div>
-  <div v-click>以为消费者在意颜值</div>
-  <div style="color: var(--mist);" v-click>↓</div>
-  <div v-click>其实在意续航</div>
-  <div style="color: var(--mist);" v-click>↓</div>
-  <div style="color: var(--crimson); font-weight: 700;" v-click>库存积压。</div>
-</div>
-
----
 layout: cinema
 variant: cyan
 eyebrow: Module 02 · Key takeaway
-index: 15 / 47
+index: 14 / 47
 ---
 
 # 消费者已经<br/>帮你做完了调研。
@@ -262,9 +248,10 @@ index: 16 / 47
 
 ---
 layout: poll
-url: https://forms.gle/replace-with-your-form
+poll: use-case-priority
 eyebrow: Quick poll
 variant: paper
+index: 17 / 47
 ---
 
 带着什么问题去看评论，<br/>决定了你能挖出<span style="color: var(--cyan-deep);">什么洞察</span>。
@@ -357,9 +344,10 @@ index: 21 / 47
 
 ---
 layout: poll
-url: https://forms.gle/replace-with-your-form
+poll: method-first-move
 eyebrow: Think first
 variant: paper
+index: 22 / 47
 ---
 
 老板让你分析一个品类的 1000 条评论——
