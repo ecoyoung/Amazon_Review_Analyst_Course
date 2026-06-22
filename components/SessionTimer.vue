@@ -17,10 +17,29 @@ const SLIDEV_FLOATING_SELECTORS = [
   '.slidev-menu',
 ]
 
-const now = ref(Date.now())
-const startedAt = ref<number | null>(null)
-let timer: number | undefined
-let observer: MutationObserver | undefined
+type TimerState = {
+  startedAt: ReturnType<typeof ref<number | null>>
+  now: ReturnType<typeof ref<number>>
+  timerId: number | null
+  observer: MutationObserver | null
+  initialized: boolean
+}
+
+const globalState = globalThis as typeof globalThis & {
+  __amazonReviewInsightTimer__?: TimerState
+}
+
+const state =
+  globalState.__amazonReviewInsightTimer__ ??
+  (globalState.__amazonReviewInsightTimer__ = {
+    startedAt: ref<number | null>(null),
+    now: ref(Date.now()),
+    timerId: null,
+    observer: null,
+    initialized: false,
+  })
+
+const { startedAt, now } = state
 
 function readStart() {
   const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -55,19 +74,20 @@ const progressPct = computed(() => {
 })
 
 onMounted(() => {
-  readStart()
-  suppressSlidevFloatingUi()
-  timer = window.setInterval(() => {
-    now.value = Date.now()
-  }, 1000)
-  observer = new MutationObserver(suppressSlidevFloatingUi)
-  observer.observe(document.body, { childList: true, subtree: true })
+  if (!state.initialized) {
+    readStart()
+    suppressSlidevFloatingUi()
+    state.timerId = window.setInterval(() => {
+      now.value = Date.now()
+    }, 1000)
+    state.observer = new MutationObserver(suppressSlidevFloatingUi)
+    state.observer.observe(document.body, { childList: true, subtree: true })
+    state.initialized = true
+  }
   window.addEventListener('keydown', onKeydown, true)
 })
 
 onBeforeUnmount(() => {
-  if (timer) window.clearInterval(timer)
-  observer?.disconnect()
   window.removeEventListener('keydown', onKeydown, true)
 })
 
