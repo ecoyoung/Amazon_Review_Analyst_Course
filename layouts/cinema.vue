@@ -16,6 +16,7 @@ const cls = computed(() => [
 
 <template>
   <div :class="cls">
+    <BrandLogo />
     <div v-if="eyebrow" class="cinema__eyebrow">{{ eyebrow }}</div>
     <div class="cinema__body cinema-enter">
       <slot />

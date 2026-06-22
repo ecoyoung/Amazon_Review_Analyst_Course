@@ -8,7 +8,7 @@ const props = defineProps<{
 <template>
   <div class="editorial">
     <div class="editorial__masthead">
-      <span class="left">{{ module ?? 'Consumer Insights' }}</span>
+      <span class="left"><BrandLogo /><span>{{ module ?? 'Consumer Insights' }}</span></span>
       <span class="right">{{ page }}</span>
     </div>
     <slot />
