@@ -14,6 +14,10 @@ mdc: true
 
 <script setup>
 const TOOL_URL = import.meta.env.VITE_TOOL_URL || 'http://182.92.240.206:8080/'
+
+function openToolPage() {
+  window.open(TOOL_URL, '_blank', 'noopener,noreferrer')
+}
 </script>
 
 ---
@@ -51,7 +55,7 @@ page: 01 / 40
     </div>
     <div class="editorial__card" v-click>
       <h3>这是一条线</h3>
-      <p>先学方法，再看工具，再回到报告和决策。课程培训和工具不是两门课，而是一套完整工作流。</p>
+      <p>先学方法，再看工具，再回到报告和决策。</p>
     </div>
   </div>
   <div class="editorial__column">
@@ -688,15 +692,14 @@ page: 29 / 39
       <p>哪些任务适合交给 LLM，哪些任务你仍然会保留人工判断。</p>
     </div>
     <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">把你最常用的一个文本工作场景带进来，我们一起拆一拆。</p>
-    <a
+    <button
       v-click
-      :href="TOOL_URL"
-      target="_blank"
-      rel="noreferrer"
-      style="display:inline-flex; align-items:center; justify-content:center; margin-top:12px; padding:12px 18px; border-radius:999px; background:var(--cyan); color:#fff; text-decoration:none; font-weight:700;"
+      type="button"
+      @click.stop.prevent="openToolPage"
+      style="display:inline-flex; align-items:center; justify-content:center; margin-top:12px; padding:12px 18px; border:0; border-radius:999px; background:var(--cyan); color:#fff; text-decoration:none; font-weight:700; cursor:pointer;"
     >
       打开工具页面
-    </a>
+    </button>
   </div>
 </div>
 
