@@ -13,7 +13,7 @@ mdc: true
 ---
 
 <script setup>
-const TOOL_URL = import.meta.env.VITE_TOOL_URL || 'http://182.92.240.206:8080/'
+const TOOL_URL = import.meta.env.VITE_TOOL_URL || 'http://127.0.0.1:5174/'
 
 function openToolPage() {
   window.location.assign(TOOL_URL)

@@ -53,7 +53,7 @@ For a fixed server deployment, run the same `docker compose` stack behind your d
 Set the slide deck link target with:
 
 ```bash
-VITE_TOOL_URL=http://182.92.240.206:8080/
+VITE_TOOL_URL=http://127.0.0.1:5174/
 ```
 
 Then rebuild the deck and point the button on the workshop slide to that URL. The tool app itself stays on the Docker stack.
