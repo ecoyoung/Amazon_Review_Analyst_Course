@@ -42,5 +42,6 @@ onMounted(async () => {
         </div>
       </div>
     </div>
+    <SessionTimer />
   </div>
 </template>

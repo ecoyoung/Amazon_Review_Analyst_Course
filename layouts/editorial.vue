@@ -12,5 +12,6 @@ const props = defineProps<{
       <span class="right">{{ page }}</span>
     </div>
     <slot />
+    <SessionTimer />
   </div>
 </template>

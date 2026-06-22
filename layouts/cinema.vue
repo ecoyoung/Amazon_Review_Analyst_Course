@@ -20,6 +20,7 @@ const cls = computed(() => [
     <div class="cinema__body cinema-enter">
       <slot />
     </div>
+    <SessionTimer />
     <div v-if="index" class="cinema__index">{{ index }}</div>
   </div>
 </template>

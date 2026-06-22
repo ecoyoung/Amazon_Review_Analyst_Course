@@ -31,8 +31,45 @@
 .slidev-overview,
 .slidev-devtools,
 .slidev-shortcuts,
-.slidev-corner {
+.slidev-corner,
+#slidev-goto-dialog,
+#slidev-goto-input,
+.slidev-toc,
+.slidev-toc-wrapper,
+.slidev-toc-container,
+.slidev-side,
+.slidev-sidebar,
+.slidev-side-nav,
+.slidev-outline,
+.slidev-outline-wrapper,
+.slidev-drawer,
+.slidev-drawer-content,
+.slidev-menu,
+.slidev-menu-content,
+.slidev-progress,
+[class*="slidev-toc"],
+[class*="slidev-outline"],
+[class*="slidev-sidebar"],
+[class*="slidev-drawer"],
+[class*="slidev-menu"],
+[aria-label*="目录"],
+[aria-label*="Table of contents"],
+[aria-label*="table of contents"],
+[aria-label*="Outline"],
+[aria-label*="outline"] {
   display: none !important;
+}
+
+/* Slidev's built-in Goto dialog has no semantic "toc" class; hide it
+   explicitly because it opens as a right-side slide list and blocks content. */
+#slidev-goto-dialog,
+#slidev-goto-dialog *,
+.autocomplete-list,
+nav:has(button[title="Show slide overview"]),
+div:has(> button[title="Draw with stylus"]) {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* ── Reset Slidev layout defaults ─────────────────────────────── */
@@ -113,6 +150,97 @@ h1, h2, h3, h4 {
 .cinema--ink .cinema__index,
 .cinema--cyan .cinema__index {
   color: rgba(255, 255, 255, 0.55);
+}
+
+.session-timer {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  z-index: 100000;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  width: 154px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(0, 130, 180, 0.16);
+  color: var(--ink);
+  box-shadow: 0 8px 20px rgba(13, 64, 92, 0.08);
+  backdrop-filter: blur(6px);
+  user-select: none;
+  pointer-events: auto;
+}
+.cinema--ink .session-timer,
+.cinema--cyan .session-timer {
+  background: rgba(11, 27, 43, 0.58);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--paper);
+}
+.session-timer__label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--cyan-deep);
+}
+.cinema--ink .session-timer__label,
+.cinema--cyan .session-timer__label {
+  color: rgba(255, 255, 255, 0.72);
+}
+.session-timer__value {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+.session-timer__target {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--mist);
+}
+.session-timer__reset {
+  appearance: none;
+  min-width: 42px;
+  height: 22px;
+  border: 1px solid rgba(0, 130, 180, 0.18);
+  border-radius: 999px;
+  padding: 0 8px;
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--cyan-deep);
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.cinema--ink .session-timer__reset,
+.cinema--cyan .session-timer__reset {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.72);
+}
+.session-timer__reset:hover {
+  background: var(--tint);
+}
+.cinema--ink .session-timer__target,
+.cinema--cyan .session-timer__target {
+  color: rgba(255, 255, 255, 0.58);
+}
+.session-timer__bar {
+  grid-column: 1 / -1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(0, 130, 180, 0.14);
+}
+.session-timer__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--cyan);
 }
 
 .cinema__body {
@@ -335,6 +463,174 @@ h1, h2, h3, h4 {
 .chip--bad {
   background: rgba(215, 38, 61, 0.10);
   color: var(--crimson);
+}
+
+/* ── Text-first teaching components ─────────────────────────── */
+
+.review-snippet {
+  position: relative;
+  padding: 18px 20px 18px 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(13, 64, 92, 0.08);
+}
+.review-snippet::before {
+  content: "“";
+  position: absolute;
+  top: -18px;
+  left: 12px;
+  font-family: var(--font-serif);
+  font-size: 58px;
+  line-height: 1;
+  color: rgba(0, 174, 239, 0.18);
+}
+.review-snippet__text {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.review-snippet__meta {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.signal-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.signal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 600;
+}
+.signal-pill strong { color: var(--cyan-deep); }
+
+.reasoning-ladder {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.reasoning-step {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 14px;
+  background: var(--whisper);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 8px 8px 0;
+}
+.reasoning-step__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan-deep);
+}
+.reasoning-step p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.compare-card {
+  padding: 16px;
+  min-height: 124px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.compare-card--bad {
+  border-color: rgba(215, 38, 61, 0.25);
+  background: rgba(215, 38, 61, 0.04);
+}
+.compare-card--good {
+  border-color: rgba(0, 174, 239, 0.28);
+  background: var(--whisper);
+}
+.compare-card h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.compare-card p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.decision-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.matrix-cell {
+  min-height: 96px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.matrix-cell--focus {
+  background: var(--tint);
+  border-color: rgba(0, 174, 239, 0.38);
+}
+.matrix-cell--risk {
+  background: rgba(215, 38, 61, 0.05);
+  border-color: rgba(215, 38, 61, 0.2);
+}
+.matrix-cell h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.matrix-cell p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--mist);
+}
+
+.evidence-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.evidence-item {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.evidence-item strong {
+  display: block;
+  font-size: 11px;
+  color: var(--cyan-deep);
+  margin-bottom: 4px;
+}
+.evidence-item span {
+  font-size: 12px;
+  color: var(--ink-soft);
 }
 
 /* ── Lottie stage (full-bleed animation) ──────────────────────── */

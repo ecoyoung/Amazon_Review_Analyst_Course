@@ -1,9 +1,9 @@
 ---
 theme: none
-title: Consumer Insights 入门课
+title: Amazon 评论洞察实战课
 info: |
-  基于 Amazon 评论分析的消费者洞察
-  内部培训 · 60 分钟 · 8 模块
+  从竞品评论到产品决策
+  Amazon Review Insight · 60 分钟 · 实战工作坊
 highlighter: shiki
 lineNumbers: false
 drawings:
@@ -12,322 +12,570 @@ transition: slide
 mdc: true
 ---
 
+<script setup>
+const TOOL_URL = import.meta.env.VITE_TOOL_URL || 'http://182.92.240.206:8080/'
+</script>
+
 ---
 layout: cinema
 variant: ink
-eyebrow: Internal Training · 60 min
-index: 00 / 47
+eyebrow: Amazon Review Insight · Workshop
+index: 00 / 40
 ---
 
-# 消费者<br/>洞察
+# Amazon 评论<br/>洞察实战
 
-<p class="cinema__sub">基于 Amazon 评论分析 · 一个细节如何让评分 4.2 变 4.7</p>
+<p class="cinema__sub">从竞品评论到产品、Listing和风险决策</p>
 
-<!--
-哈哈哈
--->
+---
+layout: editorial
+module: 课程培训与工具
+page: 01 / 40
+---
+
+<h1 class="editorial__headline">你能学到什么，<br/>学不到什么。</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>能学到</h3>
+      <p>Amazon 评论分析的方法：怎么从评论里读出人物、场景、优势、痛点和优先级。</p>
+    </div>
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>能学到</h3>
+      <p>获取和分析评论的工具用法：上传、清洗、分析、读报告、回看证据。</p>
+    </div>
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>能学到</h3>
+      <p>AI 时代做洞察的基本经验：样本意识、证据链、抽样偏差、上下文窗口和幻觉风险。</p>
+    </div>
+    <div class="editorial__card" v-click>
+      <h3>这是一条线</h3>
+      <p>先学方法，再看工具，再回到报告和决策。课程培训和工具不是两门课，而是一套完整工作流。</p>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="editorial__card" v-click>
+      <h3>学不到</h3>
+      <p>分析工具的设计细节：prompt 怎么写、schema 怎么定、chunk 怎么切、如何归并标签、如何做评估和审计。</p>
+    </div>
+    <div class="editorial__card" v-click>
+      <h3>学不到</h3>
+      <p>后端和工程实现：队列、存储、报告生成、API、部署和 harness 的内部架构。</p>
+    </div>
+    <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">先学方法，再学判断。我们先把边界说清楚，后面再讨论。</p>
+  </div>
+</div>
 
 ---
 layout: lottie-stage
 variant: paper
-eyebrow: The Hook
-index: 01 / 47
+eyebrow: The hook
+index: 02 / 39
 name: 01-hook-star-climb
-caption: 半年时间，一款蓝牙耳机从 4.2★ 变成 4.7★，销量翻了三倍。
+caption: 同样 1000 条评论，有人只看到评分，有人看到可以让评分上升的具体动作。
+---
+
+---
+layout: lottie-stage
+variant: paper
+eyebrow: The hook
+index: 02 / 40
+name: 01-hook-star-climb
+caption: 同样 1000 条评论，有人只看到评分，有人看到可以让评分上升的具体动作。
 ---
 
 ---
 layout: cinema
 variant: paper
-eyebrow: The Hook
-index: 02 / 47
+eyebrow: Opening question
+index: 03 / 40
 ---
 
-# 对手<br/>发现了什么？
+# 如果要进入<br/>一个新品类
 
-<p class="cinema__sub">今天这堂课结束之前，你们会知道答案。</p>
+<p class="cinema__sub">你会看关注哪些内容？</p>
 
-<div style="position: absolute; bottom: 56px; left: 56px; right: 56px; display: flex; justify-content: center; gap: 16px;">
-  <span v-click style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.32); border-radius: 999px; font-size: 12px; color: var(--cyan-deep);">⭐ 4.2 → 4.7</span>
-  <span v-click style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.32); border-radius: 999px; font-size: 12px; color: var(--cyan-deep);">📦 销量 ×3</span>
-  <span v-click style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.32); border-radius: 999px; font-size: 12px; color: var(--cyan-deep);">⚡ 只改了一个细节</span>
+<div style="position:absolute; bottom:58px; left:56px; right:56px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+  <span v-click class="chip">市场</span>
+  <span v-click class="chip">价格带</span>
+  <span v-click class="chip">广告关键词</span>
+  <span v-click class="chip">新品表现</span>
+  <span v-click class="chip">竞品评论</span>
 </div>
 
 ---
 layout: poll
-poll: warmup-first-step
+poll: first-signal
 eyebrow: Warm-up
 variant: paper
-index: 03 / 47
+index: 04 / 40
 ---
 
-如果老板给你 50 万做下一个品类，<br/>你<span style="color: var(--cyan-deep);">第一步</span>会做什么？
+看一个 Amazon 竞品时，<br/>你最先想知道<span style="color: var(--cyan-deep);">哪件事</span>？
 
 ---
-layout: cinema
-variant: paper
-eyebrow: Module 01
-index: 04 / 47
+layout: cinema-quote
+variant: ink
+eyebrow: Core shift
+index: 05 / 39
 ---
 
-# CI 是<br/>什么
+评论不是用来证明产品好不好。
 
-<p class="cinema__sub">Consumer Insights · 消费者洞察 · 5 min</p>
-
-<blockquote style="margin-top: 36px; padding: 0 24px; border-left: 3px solid var(--cyan); font-family: var(--font-serif); font-style: italic; font-size: 18px; line-height: 1.5; color: var(--ink-soft); max-width: 640px; text-align: left;">
-  "消费者从来不会主动告诉你他们想要什么——<br/>但他们会在评论区把想法全写出来。"
-</blockquote>
+评论是用来发现：<strong style="font-style:normal; color:var(--cyan);">用户为什么买、为什么吐槽、为什么复购。</strong>
 
 ---
 layout: editorial
-module: Module 01 · CI defined
-page: 06 / 47
+module: Core path
+page: 06 / 39
 ---
 
-<h1 class="editorial__headline">不是"说了什么"，<br/>而是"<em>背后意味着什么</em>"。</h1>
+<h1 class="editorial__headline">今天只解决<br/>一个问题。</h1>
+
+<p class="editorial__lede">如何把一堆 Amazon评论，变成老板能听懂、团队能执行的商业决策 or 分析报告。</p>
 
 <div class="editorial__grid">
   <div class="editorial__column">
-    <p class="editorial__lede" v-click>CI 全称 Consumer Insights，中文叫消费者洞察。它是把消费者的"碎碎念"翻译成"下一步行动"的能力。</p>
-    <div class="editorial__card" v-click>
-      <span class="chip">定义</span>
-      <p style="margin-top: 12px; font-size: 18px;">把消费者说的话，<strong style="color: var(--cyan-deep);">翻译成公司能执行的决策</strong>。</p>
+    <div class="review-snippet" v-click>
+      <p class="review-snippet__text">"The lid opened inside my bag twice."</p>
+      <div class="review-snippet__meta">
+        <span class="chip">3★</span>
+        <span class="chip">travel use</span>
+        <span class="chip chip--bad">leak risk</span>
+      </div>
     </div>
   </div>
   <div class="editorial__column">
-    <p class="editorial__lede" v-click>同样读完 1000 条评论——</p>
-    <ul class="editorial__list">
-      <li v-click><span class="marker">A</span><span class="body"><strong>有人</strong><span>结论是 "消费者普遍不满意"</span></span></li>
-      <li v-click><span class="marker">B</span><span class="body"><strong>洞察者</strong><span>结论是 "把说明书从 8 页压成 1 页，差评减 40%"</span></span></li>
-    </ul>
+    <div class="reasoning-ladder">
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Signal</div>
+        <p>不是泛泛的“质量差”，而是移动场景下的闭合失败。</p>
+      </div>
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Insight</div>
+        <p>用户把它当 travel-safe 产品使用，但实际体验破坏了这个预期。</p>
+      </div>
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Decision</div>
+        <p>验证卡扣/磁吸结构，同时调整 Listing 中的便携承诺。</p>
+      </div>
+    </div>
   </div>
 </div>
 
 ---
+layout: cinema
+variant: cyan
+eyebrow: Framework
+index: 07 / 40
+---
+
+# Review → Signal<br/>Insight → Decision
+
+<p class="cinema__sub">评论原文 → 可量化信号 → 业务洞察 → 行动决策</p>
+
+---
 layout: lottie-stage
 variant: paper
-eyebrow: The three-layer model
-index: 07 / 47
+eyebrow: From surface to action
+index: 08 / 39
 name: 02-ci-three-layers
-caption: 表层 → 中层 → 深层。每剥开一层，可执行性就高一级。
+caption: 不停在表层评价，而是往下拆到场景、动机、障碍和可执行动作。
 ---
 
 ---
 layout: editorial
-module: Module 01 · CI defined
-page: 08 / 47
+module: Module 01 · What reviews can answer
+page: 09 / 40
 ---
 
-<h1 class="editorial__headline">耳机的<br/>三句话。</h1>
+<h1 class="editorial__headline">Amazon 评论<br/>能回答什么？</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <div class="review-snippet">
+<p class="review-snippet__text">"Bought this for <strong style="color: red;">my dad</strong>. Easy to use, but the <strong style="color: red;">instructions were confusing</strong> at first."</p>
+      <div class="review-snippet__meta">
+        <span class="chip">gift buyer</span>
+        <span class="chip">first-time setup</span>
+      </div>
+    </div>
+    <div class="signal-strip" v-click>
+      <span class="signal-pill"><strong>People</strong> gift buyer</span>
+      <span class="signal-pill"><strong>Context</strong> first use</span>
+      <span class="signal-pill"><strong>Love</strong> easy to use</span>
+      <span class="signal-pill"><strong>Hate</strong> instructions</span>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="reasoning-ladder">
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Question</div>
+        <p>谁在买？为什么买？哪个环节卡住？</p>
+      </div>
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Answer</div>
+        <p>礼品购买者认可易用性，但首次设置说明影响体验。</p>
+      </div>
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Action</div>
+        <p>优化说明书、首屏 FAQ、开箱引导，而不是重写全部卖点。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+layout: editorial
+module: Module 01 · What reviews cannot answer
+page: 10 / 40
+---
+
+<h1 class="editorial__headline">Amazon 评论中<br/>不能回答什么？</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <div class="review-snippet">
+      <p class="review-snippet__text">"I returned it because it was not what I expected."</p>
+      <div class="review-snippet__meta">
+        <span class="chip chip--bad">missing context</span>
+        <span class="chip chip--bad">unclear expectation</span>
+      </div>
+    </div>
+    <div class="signal-strip" v-click>
+      <span class="signal-pill"><strong>不能回答</strong> 市场的需求多大</span>
+      <span class="signal-pill"><strong>不能回答</strong> 生活状态与环境</span>
+      <span class="signal-pill"><strong>不能回答</strong> 年龄与人生阶段</span>
+      <span class="signal-pill"><strong>不能回答</strong> 没写评论的人怎么想</span>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="reasoning-ladder">
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Bias</div>
+        <p>评论样本偏向强情绪用户，沉默的大多数不会自动出现。</p>
+      </div>
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Boundary</div>
+        <p>评论能一定程度反映解释体验问题，但不能单独证明市场规模、价格弹性或购买路径。</p>
+      </div>
+      <div class="reasoning-step" v-click>
+        <div class="reasoning-step__label">Use</div>
+        <p>把评论当作“假设生成器”，再用销量、关键词、广告、访谈和测试去验证。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+layout: editorial
+module: Module 01 · Output map
+page: 11 / 40
+---
+
+<h1 class="editorial__headline">工具报告<br/>对应这些问题。</h1>
 
 <div class="editorial__grid">
   <div class="editorial__column">
     <div class="editorial__card" v-click>
       <span class="num">01</span>
-      <h3>表层 · 消费者的原话</h3>
-      <p>"耳机戴久了耳朵疼。"</p>
+      <h3>Personas</h3>
+      <p>谁在买、什么场景使用、哪个人群最值得服务。</p>
     </div>
     <div class="editorial__card" v-click>
       <span class="num">02</span>
-      <h3>中层 · 背后的需求</h3>
-      <p>需要长时间佩戴的舒适感。</p>
+      <h3>Advantages</h3>
+      <p>哪些卖点已经被用户验证，不只是我们自己想说。</p>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="editorial__card" v-click>
+      <span class="num">03</span>
+      <h3>Pain Points</h3>
+      <p>哪些摩擦正在造成差评、退货、犹豫和低转化。</p>
+    </div>
+    <div class="editorial__card editorial__card--good" v-click>
+      <span class="num">04</span>
+      <h3>Top Priorities</h3>
+      <p>把洞察转成产品、营销、风险控制的前三个动作。</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: cinema
+variant: ink
+eyebrow: Module 02
+index: 12 / 40
+---
+
+# 先判断<br/>数据能不能信
+
+<p class="cinema__sub">评论分析的第一个坑：样本错了，洞察再漂亮也没用。</p>
+
+---
+layout: lottie-stage
+variant: paper
+eyebrow: Review data scale
+index: 13 / 39
+name: 03-gold-mine-scale
+caption: 评论数量越大，越需要抽样、清洗、分层，而不是直接把全部内容塞给 AI。
+---
+
+---
+layout: lottie-stage
+variant: paper
+eyebrow: Review data scale
+index: 13 / 40
+name: 03-gold-mine-scale
+caption: 评论数量越大，越需要抽样、清洗、分层，而不是直接把全部内容塞给 AI。
+---
+
+---
+layout: editorial
+module: Module 02 · Data quality
+page: 14 / 39
+---
+
+<h1 class="editorial__headline">不要只问：<br/>评分高不高。</h1>
+
+<div class="compare-grid">
+  <div class="compare-card compare-card--bad" v-click>
+    <h3>5★ · 低信息</h3>
+    <p>"Great product. Works well."</p>
+    <div class="review-snippet__meta">
+      <span class="chip chip--bad">结论少</span>
+      <span class="chip chip--bad">无场景</span>
+    </div>
+  </div>
+  <div class="compare-card compare-card--good" v-click>
+    <h3>3★ · 高信息</h3>
+    <p>"Easy to install, but the screw holes did not align with my cabinet."</p>
+    <div class="review-snippet__meta">
+      <span class="chip">场景</span>
+      <span class="chip">部件</span>
+      <span class="chip">原因</span>
+    </div>
+  </div>
+</div>
+
+<div class="evidence-bar" style="margin-top:18px;">
+  <div class="evidence-item" v-click><strong>Verified</strong><span>优先保留，但不是绝对真相</span></div>
+  <div class="evidence-item" v-click><strong>Helpful</strong><span>代表其他买家觉得这条有用</span></div>
+  <div class="evidence-item" v-click><strong>Date</strong><span>判断问题是历史还是近期爆发</span></div>
+</div>
+
+---
+layout: editorial
+module: Module 02 · Input schema
+page: 15 / 39
+---
+
+<h1 class="editorial__headline">工具需要的<br/>不是玄学。</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <p class="editorial__lede">`amazon-review-insight` 接受一份 Amazon 评论 CSV 或 Excel。</p>
+    <div class="editorial__card" v-click>
+      <span class="chip">Required columns</span>
+      <p style="margin-top:12px;"><code>Content</code> · <code>Rating</code> · <code>Date</code> · <code>Helpful</code> · <code>Verified Purchase</code></p>
     </div>
   </div>
   <div class="editorial__column">
     <div class="editorial__card editorial__card--good" v-click>
-      <span class="num">03</span>
-      <h3>深层 · 可执行的洞察</h3>
-      <p>目标用户是<strong>居家办公人群</strong>，核心卖点应该是<strong>"8 小时无压佩戴"</strong>。</p>
+      <h3>清洗动作</h3>
+      <p>去重、剔除空内容、校验评分、规范日期、生成稳定 <code>review_id</code>，再进入分析。</p>
     </div>
-    <p class="editorial__lede" v-click style="margin-top: auto; color: var(--mist); font-size: 14px;">→ 直接变成产品定位、广告脚本、卖点排序。</p>
+    <p v-click class="editorial__lede" style="font-size:14px; color:var(--mist);">SellerSprite 星级均衡抽样要特别标注：评分分布不能当作自然评分分布。</p>
   </div>
 </div>
-
----
-layout: cinema
-variant: cyan
-eyebrow: Module 01 · Key takeaway
-index: 09 / 47
----
-
-# 碎碎念 →<br/>下一步行动。
-
----
-layout: cinema
-variant: paper
-eyebrow: Module 02
-index: 10 / 47
----
-
-# 为什么评论<br/>是金矿
-
-<p class="cinema__sub">Amazon Reviews · 8 min</p>
 
 ---
 layout: cinema-quote
 variant: paper
-eyebrow: Premise
-index: 11 / 47
+eyebrow: Principle
+index: 16 / 39
 ---
 
-全球最贵的消费者调研，一份要几十万。
+样本不是“有就行”，
+而是决定你看到的是信号还是噪声。
 
-但 Amazon 上有一个品类动辄上万条真实用户反馈——
-
-<strong style="color: var(--cyan-deep); font-style: normal;">免费、公开、24h 更新。</strong>
-
----
-layout: lottie-stage
-variant: paper
-eyebrow: The scale
-index: 12 / 47
-name: 03-gold-mine-scale
-caption: 一个品类上万条真实买家评论，远超普通调研样本量。
----
-
----
-layout: editorial
-module: Module 02 · Why reviews
-page: 13 / 47
----
-
-<h1 class="editorial__headline">四个<br/><em>独特性</em>。</h1>
-
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; margin-top: 16px;">
-  <div v-click style="padding-bottom: 20px; border-bottom: 1px solid var(--line);">
-    <span style="font-family: var(--font-serif); font-style: italic; font-size: 36px; color: var(--cyan);">①</span>
-    <div style="margin-top: 8px;">
-      <strong style="font-family: var(--font-display); font-size: 22px;">真实购买者</strong>
-      <p style="color: var(--mist); margin: 4px 0 0; font-size: 15px;">不是路人，是真掏过钱的人。</p>
-    </div>
-  </div>
-  <div v-click style="padding-bottom: 20px; border-bottom: 1px solid var(--line);">
-    <span style="font-family: var(--font-serif); font-style: italic; font-size: 36px; color: var(--cyan);">②</span>
-    <div style="margin-top: 8px;">
-      <strong style="font-family: var(--font-display); font-size: 22px;">有使用经历</strong>
-      <p style="color: var(--mist); margin: 4px 0 0; font-size: 15px;">不是"看起来不错"，是"用了之后才发现"。</p>
-    </div>
-  </div>
-  <div v-click style="padding-bottom: 20px; border-bottom: 1px solid var(--line);">
-    <span style="font-family: var(--font-serif); font-style: italic; font-size: 36px; color: var(--cyan);">③</span>
-    <div style="margin-top: 8px;">
-      <strong style="font-family: var(--font-display); font-size: 22px;">双维度信息</strong>
-      <p style="color: var(--mist); margin: 4px 0 0; font-size: 15px;">星级（量化）+ 文字（质化），可交叉分析。</p>
-    </div>
-  </div>
-  <div v-click style="padding-bottom: 20px; border-bottom: 1px solid var(--line);">
-    <span style="font-family: var(--font-serif); font-style: italic; font-size: 36px; color: var(--cyan);">④</span>
-    <div style="margin-top: 8px;">
-      <strong style="font-family: var(--font-display); font-size: 22px;">规模够大</strong>
-      <p style="color: var(--mist); margin: 4px 0 0; font-size: 15px;">几百到几万条，碾压普通调研的 30 样本。</p>
-    </div>
-  </div>
+<div style="margin-top:24px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+  <span class="chip">抽样偏差</span>
+  <span class="chip">样本量</span>
+  <span class="chip">代表性</span>
+  <span class="chip">置信度</span>
 </div>
 
+<p style="margin-top:24px; max-width:760px; margin-left:auto; margin-right:auto; font-size:18px; line-height:1.65; color:var(--ink-soft); text-align:left;">
+  少量评论可以用来找线索，但不能直接代表整体。
+  如果样本偏向高星、近期、verified，或者只抽到某一类用户，
+  你看到的就会是被放大过的结果，而不是市场本身。
+</p>
+
+<p style="margin-top:16px; max-width:760px; margin-left:auto; margin-right:auto; font-size:18px; line-height:1.65; color:var(--ink-soft); text-align:left;">
+  统计上最先要问的不是“结论是什么”，而是“这个样本能不能撑得住这个结论”。
+  n 太小时，1 到 2 条极端评论就足以把比例、频次和优先级带偏。
+</p>
+
 ---
 layout: cinema
-variant: cyan
-eyebrow: Module 02 · Key takeaway
-index: 14 / 47
----
-
-# 消费者已经<br/>帮你做完了调研。
-
-<p class="cinema__sub">你只需要学会"读"。</p>
-
----
-layout: cinema
-variant: paper
+variant: ink
 eyebrow: Module 03
-index: 16 / 47
+index: 17 / 39
 ---
 
-# CI 能用<br/>在哪里
+# 工具到底在做什么？
 
-<p class="cinema__sub">Application Scenarios · 8 min</p>
-
----
-layout: poll
-poll: use-case-priority
-eyebrow: Quick poll
-variant: paper
-index: 17 / 47
----
-
-带着什么问题去看评论，<br/>决定了你能挖出<span style="color: var(--cyan-deep);">什么洞察</span>。
-
-你最想用 CI 回答下面哪类问题？
+<p class="cinema__sub">Personas · Advantages · Pain Points → Top Priorities</p>
 
 ---
 layout: lottie-stage
 variant: paper
-eyebrow: Four scenarios
-index: 18 / 47
+eyebrow: Tool extraction map
+index: 18 / 39
 name: 04-four-use-cases
-caption: 同一份评论，四种问法，四个完全不同的答案。
+caption: 不是把评论“总结一下”，而是把每条评论拆成可追溯、可聚合、可行动的结构化发现。
 ---
 
 ---
 layout: editorial
-module: Module 03 · Four scenarios
-page: 19 / 47
+module: Module 03 · Tool output model
+page: 19 / 39
 ---
 
-<h1 class="editorial__headline">先问，<br/><em>再看</em>。</h1>
+<h1 class="editorial__headline">先看工具<br/>最终要交什么。</h1>
 
 <div class="editorial__grid">
   <div class="editorial__column">
     <div class="editorial__card" v-click>
-      <span class="chip">选品 / 品类</span>
-      <p style="margin-top: 12px;"><strong>这个品类值不值得做？</strong></p>
-      <p style="margin-top: 4px; color: var(--mist);">差评集中处 = 未被满足的需求。</p>
+      <span class="chip">Input</span>
+      <p style="margin-top:12px;"><code>Content</code> · <code>Rating</code> · <code>Date</code> · <code>Helpful</code> · <code>Verified Purchase</code></p>
     </div>
     <div class="editorial__card" v-click>
-      <span class="chip">产品优化</span>
-      <p style="margin-top: 12px;"><strong>下一版改什么？</strong></p>
-      <p style="margin-top: 4px; color: var(--mist);">高频痛点 + 竞品被夸的点。</p>
+      <span class="chip">Pipeline</span>
+      <p style="margin-top:12px;">清洗 → 150 条/块 → LLM 抽取 → 近义归并 → 报告生成。</p>
     </div>
   </div>
   <div class="editorial__column">
-    <div class="editorial__card" v-click>
-      <span class="chip">内容 / 广告</span>
-      <p style="margin-top: 12px;"><strong>消费者最在意什么卖点？</strong></p>
-      <p style="margin-top: 4px; color: var(--mist);">5★ 评论反复出现的关键词。</p>
+    <div class="signal-strip">
+      <span class="signal-pill" v-click><strong>Personas</strong> 谁在买、什么场景用</span>
+      <span class="signal-pill" v-click><strong>Advantages</strong> 哪些卖点被真实验证</span>
+      <span class="signal-pill" v-click><strong>Pain Points</strong> 哪些摩擦影响体验和转化</span>
+      <span class="signal-pill" v-click><strong>Top 3</strong> 产品、营销、风险动作</span>
     </div>
-    <div class="editorial__card" v-click>
-      <span class="chip">竞品分析</span>
-      <p style="margin-top: 12px;"><strong>对手的弱点在哪？</strong></p>
-      <p style="margin-top: 4px; color: var(--mist);">竞品差评的规律性问题。</p>
+    <div class="editorial__card editorial__card--good" v-click style="margin-top:12px;">
+      <p>交付一份有准确数据、可靠分析和行动策略的报告</p>
     </div>
   </div>
 </div>
 
 ---
 layout: editorial
-module: Module 03 · Boundaries
-page: 20 / 47
+module: Module 03 · Evidence-backed extraction
+page: 20 / 39
 ---
 
-<h1 class="editorial__headline">能做与<br/><em>做不了</em>。</h1>
+<h1 class="editorial__headline">每个结论<br/>都要能回查。</h1>
 
 <div class="editorial__grid">
   <div class="editorial__column">
-    <p class="editorial__lede" v-click>评论能告诉你的 ↓</p>
+    <div class="review-snippet">
+      <p class="review-snippet__text">"Easy to swallow, but I wish the dosage instructions were clearer."</p>
+      <div class="review-snippet__meta">
+        <span class="chip">review_id: 128</span>
+        <span class="chip">4★</span>
+        <span class="chip">verified</span>
+      </div>
+    </div>
+    <div class="editorial__card" v-click>
+      <span class="chip">不要输出</span>
+      <p style="margin-top:12px;">"用户觉得说明不好。"</p>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="editorial__card editorial__card--good" v-click>
+      <span class="chip">工具应输出</span>
+      <p style="margin-top:12px;"><strong>Usage Guidance Gap</strong>：部分用户认可易吞咽，但剂量/用法说明不够清楚；证据来自 review_id 和短 quote。</p>
+    </div>
+    <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">你的工具有一个硬规则：报告里的 quote 必须能匹配同一个 <code>review_id</code> 的原始评论。</p>
+  </div>
+</div>
+
+layout: editorial
+module: Module 03 · From extraction to insight
+page: 21 / 39
+---
+
+<h1 class="editorial__headline">抽取结果<br/>还不是洞察。</h1>
+
+<div class="reasoning-ladder">
+  <div class="reasoning-step" v-click>
+    <div class="reasoning-step__label">Weak</div>
+    <p>很多用户说产品质量不好。</p>
+  </div>
+  <div class="reasoning-step" v-click>
+    <div class="reasoning-step__label">Better</div>
+    <p>低星评论集中提到 "lid does not close" 和 "magnet weak"。</p>
+  </div>
+  <div class="reasoning-step" v-click>
+    <div class="reasoning-step__label">Insight</div>
+    <p>差评不是否定整体产品，而是集中在闭合体验；优先修复磁吸和开合手感，可能比重做音质更有效。</p>
+  </div>
+</div>
+
+---
+layout: editorial
+module: Module 03 · Insight test
+page: 22 / 39
+---
+
+<h1 class="editorial__headline">洞察必须<br/>过五关。</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
     <ul class="editorial__list">
-      <li v-click><span class="marker">✓</span><span class="body"><strong>人群画像（粗）</strong></span></li>
-      <li v-click><span class="marker">✓</span><span class="body"><strong>使用场景</strong></span></li>
-      <li v-click><span class="marker">✓</span><span class="body"><strong>痛点 / 卖点</strong></span></li>
-      <li v-click><span class="marker">✓</span><span class="body"><strong>竞品弱点</strong></span></li>
+      <li v-click><span class="marker">1</span><span class="body"><strong>有证据</strong><span>能回到 <code>review_id</code> 和原文片段</span></span></li>
+      <li v-click><span class="marker">2</span><span class="body"><strong>有频次</strong><span>知道覆盖率或支持评论数</span></span></li>
+      <li v-click><span class="marker">3</span><span class="body"><strong>有对象</strong><span>知道是哪类用户在表达</span></span></li>
     </ul>
   </div>
   <div class="editorial__column">
-    <p class="editorial__lede" v-click style="color: var(--crimson);">评论很难告诉你的 ↓</p>
     <ul class="editorial__list">
-      <li v-click><span class="marker" style="color: var(--crimson);">✗</span><span class="body"><strong>性别 / 年龄（精确）</strong></span></li>
-      <li v-click><span class="marker" style="color: var(--crimson);">✗</span><span class="body"><strong>MBTI / 性格</strong></span></li>
-      <li v-click><span class="marker" style="color: var(--crimson);">✗</span><span class="body"><strong>购买力分层</strong></span></li>
-      <li v-click><span class="marker" style="color: var(--crimson);">✗</span><span class="body"><strong>渠道偏好</strong></span></li>
+      <li v-click><span class="marker">4</span><span class="body"><strong>有场景</strong><span>知道问题在什么时候发生</span></span></li>
+      <li v-click><span class="marker">5</span><span class="body"><strong>有动作</strong><span>能落到产品、Listing、广告或客服</span></span></li>
     </ul>
+    <div class="editorial__card editorial__card--good" v-click>
+      <p>不能行动的结论，只能叫观察。</p>
+    </div>
+  </div>
+</div>
+
+---
+layout: editorial
+module: Module 03 · Decision matrix
+page: 23 / 39
+---
+
+<h1 class="editorial__headline">优先级不是<br/>看声音最大。</h1>
+
+<div class="decision-matrix">
+  <div class="matrix-cell matrix-cell--focus" v-click>
+    <h3>高频 × 易修</h3>
+    <p>马上改：说明书、包装提示、Listing 误导。</p>
+  </div>
+  <div class="matrix-cell" v-click>
+    <h3>高频 × 难修</h3>
+    <p>进路线图：结构、配方、核心性能。</p>
+  </div>
+  <div class="matrix-cell matrix-cell--risk" v-click>
+    <h3>低频 × 高风险</h3>
+    <p>必须处理：安全、过敏、合规、误用。</p>
+  </div>
+  <div class="matrix-cell matrix-cell--focus" v-click>
+    <h3>高意图场景</h3>
+    <p>转成广告角度、A+ 页面和人群投放。</p>
   </div>
 </div>
 
@@ -335,372 +583,354 @@ page: 20 / 47
 layout: cinema
 variant: ink
 eyebrow: Module 04
-index: 21 / 47
+index: 24 / 39
 ---
 
-# 怎么做 CI
+# AI 如何<br/>帮你读评论？
 
-<p class="cinema__sub">Four-step method · 12 min · 最核心模块</p>
-
----
-layout: poll
-poll: method-first-move
-eyebrow: Think first
-variant: paper
-index: 22 / 47
----
-
-老板让你分析一个品类的 1000 条评论——
-
-你的<span style="color: var(--cyan-deep);">第一步</span>是什么？
+<p class="cinema__sub">从人工读、关键词规则，到 LLM 和 harness。</p>
 
 ---
 layout: lottie-stage
 variant: paper
-eyebrow: The four-step method
-index: 23 / 47
+eyebrow: Method shift
+index: 25 / 39
 name: 05-four-step-pipeline
-caption: 定问题 → 收评论 → 提洞察 → 出建议。第三步最难，也最值钱。
+caption: 评论分析的方法，不是一下子从人工跳到 AI，而是一步一步把不稳定的经验变成可复现流程。
 ---
 
 ---
 layout: editorial
-module: Module 04 · Step 1
-page: 24 / 47
+module: Module 04 · Pre-AI reading
+page: 26 / 39
 ---
 
-<h1 class="editorial__headline"><em>定</em><br/>问题</h1>
-
-<div class="editorial__grid">
-  <div class="editorial__column">
-    <p class="editorial__lede" v-click>看任何评论之前，先写下来。</p>
-    <p class="editorial__lede" v-click style="font-family: var(--font-serif); font-style: italic; font-size: 20px; color: var(--mist);">"问题不清晰，洞察就会跑偏。"</p>
-  </div>
-  <div class="editorial__column">
-    <div class="editorial__card editorial__card--bad" v-click>
-      <span class="chip chip--bad">❌ 错误示范</span>
-      <p style="margin-top: 12px; font-size: 18px;">我要分析一下这个品类的评论。</p>
-    </div>
-    <div class="editorial__card editorial__card--good" v-click>
-      <span class="chip">✅ 正确示范</span>
-      <p style="margin-top: 12px; font-size: 18px;">找出消费者对现有产品<strong>最集中的 3 个不满点</strong>，用于指导选品差异化方向。</p>
-    </div>
-  </div>
-</div>
-
----
-layout: editorial
-module: Module 04 · Step 2
-page: 25 / 47
----
-
-<h1 class="editorial__headline"><em>收</em><br/>评论</h1>
+<h1 class="editorial__headline">最早，<br/>靠人工读评论。</h1>
 
 <div class="editorial__grid">
   <div class="editorial__column">
     <ul class="editorial__list">
-      <li v-click><span class="marker">A</span><span class="body"><strong>选哪些产品</strong><span>头部竞品 3-5 款 + 评分两极分化的产品</span></span></li>
-      <li v-click><span class="marker">B</span><span class="body"><strong>收多少</strong><span>每款 100-300 条有效评论</span></span></li>
+      <li v-click><span class="marker">1</span><span class="body"><strong>人工浏览</strong><span>读标题、星级、正文，手工记印象。</span></span></li>
+      <li v-click><span class="marker">2</span><span class="body"><strong>人工编码</strong><span>复制到表格，给评论贴标签，再人工汇总频次。</span></span></li>
+      <li v-click><span class="marker">3</span><span class="body"><strong>问题</strong><span>慢、贵、主观，而且很难稳定复现。</span></span></li>
     </ul>
   </div>
   <div class="editorial__column">
     <div class="editorial__card editorial__card--good" v-click>
-      <span class="chip chip--gold">💡 重点</span>
-      <p style="margin-top: 12px; font-size: 18px;">不要只看 5★——<strong>3★ 中评里藏着最有价值的矛盾信号。</strong></p>
+      <h3>经验</h3>
+      <p>人工最适合做的是定义问题、看少量样本、建立 scheme，再把规则交给后续流程。</p>
     </div>
+    <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">这一步的价值在“判断”和“方法论”，不是在“规模”。</p>
   </div>
 </div>
 
 ---
 layout: editorial
-module: Module 04 · Step 3
-page: 26 / 47
+module: Module 04 · Regex and keywords
+page: 27 / 39
 ---
 
-<h1 class="editorial__headline"><em>提</em><br/>洞察 <span style="font-size: 0.5em; color: var(--gold);">★ 最核心</span></h1>
+<h1 class="editorial__headline">后来，<br/>靠正则表达式匹配。</h1>
 
 <div class="editorial__grid">
   <div class="editorial__column">
-    <p class="editorial__lede" v-click>两个工具，缺一不可：</p>
-    <ul class="editorial__list">
-      <li v-click><span class="marker">α</span><span class="body"><strong>词频分析</strong><span>哪些词反复出现（但词频高 ≠ 重要）</span></span></li>
-      <li v-click><span class="marker">β</span><span class="body"><strong>情感归因</strong><span>消费者在夸 / 骂什么，背后原因是什么</span></span></li>
-    </ul>
-  </div>
-  <div class="editorial__column">
-    <p class="editorial__lede" v-click style="color: var(--mist); font-size: 14px;">→ 下一张：观察 vs 洞察的具体差别。</p>
-  </div>
-</div>
-
----
-layout: lottie-stage
-variant: paper
-eyebrow: Observation ≠ Insight
-index: 27 / 47
-name: 06-observation-to-insight
-caption: 观察打红 X，洞察打绿 ✓。区别：有数字、有归因、能落到具体动作。
----
-
----
-layout: editorial
-module: Module 04 · Step 3
-page: 28 / 47
----
-
-<h1 class="editorial__headline">观察<br/>≠ <em>洞察</em></h1>
-
-<div class="editorial__grid">
-  <div class="editorial__column">
-    <div class="editorial__card editorial__card--bad" v-click>
-      <span class="chip chip--bad">观察</span>
-      <p style="margin-top: 16px; font-size: 28px; font-family: var(--font-serif); font-style: italic;">"很多人说质量差。"</p>
+    <div class="editorial__card" v-click>
+      <span class="chip">Can catch</span>
+      <p style="margin-top:12px;">`broken` `leak` `refund` `too small` `not fit` `easy to use`</p>
     </div>
-  </div>
-  <div class="editorial__column">
     <div class="editorial__card editorial__card--good" v-click>
-      <span class="chip">洞察</span>
-      <p style="margin-top: 16px; font-size: 22px;">3★ 评论中 <strong style="color: var(--cyan-deep);">65%</strong> 提到"收到货和图片不符"——核心问题是<strong>产品颜色还原度低</strong>。</p>
+      <span class="chip">Why it helps</span>
+      <p style="margin-top:12px;">便宜、快、可批量跑，适合做初筛和高频词聚合。</p>
     </div>
   </div>
+  <div class="editorial__column">
+    <div class="editorial__card" v-click>
+      <span class="chip chip--bad">Misses</span>
+      <p style="margin-top:12px;">"not bad at all"、"works for me"、"great for travel but not for kids" 这种上下文和否定关系，规则常常读错。</p>
+    </div>
+    <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">经验：规则适合找“明显的词”，不适合判断“词在这里是什么意思”。</p>
+  </div>
 </div>
-
----
-layout: editorial
-module: Module 04 · Step 4
-page: 29 / 47
----
-
-<h1 class="editorial__headline"><em>出</em><br/>建议</h1>
-
-<p class="editorial__lede" v-click>洞察必须连接到具体动作，否则没有价值。</p>
-
-<ul class="editorial__list" style="margin-top: 24px;">
-  <li v-click><span class="marker">→</span><span class="body"><strong>在意包装是否完好</strong><span>主图加一张"加固包装"展示图</span></span></li>
-  <li v-click><span class="marker">→</span><span class="body"><strong>差评集中"安装说明看不懂"</strong><span>在 listing 里加安装视频链接</span></span></li>
-  <li v-click><span class="marker">→</span><span class="body"><strong>5★ 高频出现"送礼"</strong><span>广告受众增加礼品场景投放</span></span></li>
-</ul>
 
 ---
 layout: cinema
-variant: paper
+variant: ink
+eyebrow: Module 04
+index: 28 / 39
+---
+
+# 再后来，<br/>把文件交给 LLM。
+
+<p class="cinema__sub">LLM 让我们不只看关键词，而是看句子、语气、场景和因果。</p>
+
+---
+layout: editorial
+module: Module 04 · Discussion
+page: 29 / 39
+---
+
+<h1 class="editorial__headline">日常中<br/>你们平时怎么用 LLM。</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>可以交流的场景</h3>
+      <p>润色论文、改摘要、生成文案、整理访谈纪要、翻译材料、提炼会议要点。</p>
+    </div>
+    <div class="editorial__card" v-click>
+      <h3>可以交流的方法</h3>
+      <p>你怎么给 LLM 限定角色、限定输入、要求引用证据、检查输出是否可靠。</p>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>我们想讨论的</h3>
+      <p>哪些任务适合交给 LLM，哪些任务你仍然会保留人工判断。</p>
+    </div>
+    <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">把你最常用的一个文本工作场景带进来，我们一起拆一拆。</p>
+    <a
+      v-click
+      :href="TOOL_URL"
+      target="_blank"
+      rel="noreferrer"
+      style="display:inline-flex; align-items:center; justify-content:center; margin-top:12px; padding:12px 18px; border-radius:999px; background:var(--cyan); color:#fff; text-decoration:none; font-weight:700;"
+    >
+      打开工具页面
+    </a>
+  </div>
+</div>
+
+---
+layout: editorial
+module: Module 04 · LLM reading
+page: 30 / 39
+---
+
+<h1 class="editorial__headline">LLM 读评论，<br/>强在语境，不强在自控。</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <div class="editorial__card" v-click>
+      <span class="chip">What it does well</span>
+      <p style="margin-top:12px;">能识别否定、转折、语气、隐含场景和多句因果，把“意思”读出来。</p>
+    </div>
+    <div class="editorial__card editorial__card--good" v-click>
+      <span class="chip">Typical win</span>
+      <p style="margin-top:12px;">把“not bad for travel” 读成场景优势，而不是单纯正面评论。</p>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="editorial__card" v-click>
+      <span class="chip chip--bad">What can go wrong</span>
+      <p style="margin-top:12px;">批量扔进去时，模型会受上下文窗口限制，读不完就开始抽样、压缩和“补完”语义。</p>
+    </div>
+    <div class="editorial__card" v-click>
+      <span class="chip chip--bad">Common failure</span>
+      <p style="margin-top:12px;">抽样偏差、概率输出和幻觉会让报告看起来完整，但不一定真实。</p>
+    </div>
+    <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">经验：LLM 适合读语义，不适合替你承担方法论责任。</p>
+  </div>
+</div>
+
+---
+layout: editorial
+module: Module 04 · Harness
+page: 31 / 40
+---
+
+<h1 class="editorial__headline">现在，<br/>要用 harness 管住 AI。</h1>
+
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <ul class="editorial__list">
+      <li v-click><span class="marker">1</span><span class="body"><strong>定义输入</strong><span>只喂需要的字段，先清洗再分析。</span></span></li>
+      <li v-click><span class="marker">2</span><span class="body"><strong>固定输出</strong><span>persona / advantage / pain_point，返回 strict JSON。</span></span></li>
+      <li v-click><span class="marker">3</span><span class="body"><strong>加证据</strong><span>每条结论都要带 review_id 和短 quote。</span></span></li>
+      <li v-click><span class="marker">4</span><span class="body"><strong>切分上下文</strong><span>按 chunk 分块，控制每次输入的评论量。</span></span></li>
+    </ul>
+  </div>
+  <div class="editorial__column">
+    <ul class="editorial__list">
+      <li v-click><span class="marker">5</span><span class="body"><strong>做归并</strong><span>合并近义主题，避免模型制造碎片化标签。</span></span></li>
+      <li v-click><span class="marker">6</span><span class="body"><strong>设评估</strong><span>检查覆盖率、重复率、幻觉和可追溯性。</span></span></li>
+      <li v-click><span class="marker">7</span><span class="body"><strong>留审计</strong><span>输出 cleaned XLSX、JSON、HTML report。</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<p class="editorial__lede" style="margin-top:16px; font-size:14px; color:var(--mist);">
+  harness 的作用不是让模型“更会说”，而是让它在受限上下文里仍然尽量少偷懒、少幻觉、少漏证据。
+</p>
+
+---
+layout: cinema
+variant: cyan
 eyebrow: Module 05
-index: 30 / 47
+index: 32 / 39
 ---
 
-# 案例<br/>还原
+# 报告怎么读？
 
-<p class="cinema__sub">回到开场那个悬念 · 10 min</p>
-
----
-layout: cinema-quote
-variant: ink
-eyebrow: Recall
-index: 31 / 47
----
-
-还记得开始说的那款蓝牙耳机吗？
-
-对手发现了什么？
+<p class="cinema__sub">不要从漂亮图表开始，要从业务问题开始。</p>
 
 ---
 layout: editorial
-module: Module 05 · Case setup
-page: 32 / 47
+module: Module 05 · Read the report
+page: 33 / 39
 ---
 
-<h1 class="editorial__headline">案例<br/><em>背景</em></h1>
+<h1 class="editorial__headline">第一眼，<br/>先看方法说明。</h1>
 
 <div class="editorial__grid">
   <div class="editorial__column">
-    <p class="editorial__lede">品类</p>
-    <p style="font-family: var(--font-serif); font-size: 36px; font-style: italic; color: var(--cyan-deep);" v-click>[讲师填入真实案例品类]</p>
+    <div class="evidence-bar" style="grid-template-columns:1fr;">
+      <div class="evidence-item" v-click><strong>Source</strong><span>文件来自哪里？自然全量评论，还是第三方抽样导出？</span></div>
+      <div class="evidence-item" v-click><strong>Sample</strong><span>分析了多少条？清洗掉了多少？是否只看 verified？</span></div>
+      <div class="evidence-item" v-click><strong>Time</strong><span>问题是近期爆发，还是历史遗留？</span></div>
+    </div>
   </div>
   <div class="editorial__column">
-    <p class="editorial__lede">问题</p>
-    <p style="font-size: 22px; line-height: 1.5;" v-click>我们是否应该进入这个品类？如果进，<strong>差异化方向</strong>是什么？</p>
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>Warning</h3>
+      <p>如果是星级均衡抽样，评分分布只能看样本结构，不能当作真实市场表现。</p>
+    </div>
+    <p class="editorial__lede" v-click style="font-size:14px; color:var(--mist);">方法说明是报告可信度的一部分。</p>
   </div>
 </div>
 
 ---
 layout: editorial
-module: Module 05 · Step 1
-page: 33 / 47
+module: Module 05 · Persona
+page: 34 / 39
 ---
 
-<h1 class="editorial__headline"><em>定</em><br/>问题</h1>
+<h1 class="editorial__headline">Personas：<br/>谁最值得服务？</h1>
 
-<p class="editorial__lede" style="margin-top: 40px;" v-click>现有头部产品的核心差评集中在哪里？</p>
-<p class="editorial__lede" v-click style="font-family: var(--font-serif); font-size: 28px; font-style: italic; color: var(--cyan-deep);">是否存在系统性、未被满足的需求？</p>
-
----
-layout: editorial
-module: Module 05 · Step 2
-page: 34 / 47
----
-
-<h1 class="editorial__headline"><em>收</em><br/>评论</h1>
-
-<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 24px;">
-  <div class="editorial__card editorial__card--bad" v-click>
-    <span class="chip chip--bad">1-2★</span>
-    <p style="margin-top: 16px; font-family: var(--font-serif); font-size: 36px; font-style: italic;">~400</p>
-    <p style="font-size: 14px; color: var(--mist);">条</p>
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <p class="editorial__lede">不要把 persona 做成人口统计标签。Amazon 评论里更有价值的是使用场景和购买动机。</p>
+    <div class="editorial__card" v-click>
+      <span class="chip">差</span>
+      <p style="margin-top:12px;">女性用户、年轻用户、中产用户。</p>
+    </div>
   </div>
-  <div class="editorial__card" v-click style="border-left-color: var(--gold);">
-    <span class="chip chip--gold">3★</span>
-    <p style="margin-top: 16px; font-family: var(--font-serif); font-size: 36px; font-style: italic;">~250</p>
-    <p style="font-size: 14px; color: var(--mist);">条 · 矛盾信号最浓</p>
-  </div>
-  <div class="editorial__card editorial__card--good" v-click>
-    <span class="chip">5★</span>
-    <p style="margin-top: 16px; font-family: var(--font-serif); font-size: 36px; font-style: italic;">~150</p>
-    <p style="font-size: 14px; color: var(--mist);">条 · 对照</p>
+  <div class="editorial__column">
+    <div class="editorial__card editorial__card--good" v-click>
+      <span class="chip">好</span>
+      <p style="margin-top:12px;">frequent travelers、parents buying for children、first-time users、maintenance-seeking users。</p>
+    </div>
+    <p v-click class="editorial__lede" style="font-size:14px; color:var(--mist);">除非评论者明确自述，不要推断年龄、性别、健康状况等敏感属性。</p>
   </div>
 </div>
 
 ---
 layout: editorial
-module: Module 05 · Step 3
-page: 35 / 47
+module: Module 05 · Advantages
+page: 35 / 39
 ---
 
-<h1 class="editorial__headline"><em>提</em><br/>洞察</h1>
+<h1 class="editorial__headline">Advantages：<br/>哪些卖点被验证？</h1>
 
-<ul class="editorial__list" style="margin-top: 32px;">
-  <li v-click><span class="marker">α</span><span class="body"><strong>差评词频 TOP 5</strong><span>[根据真实数据填入]</span></span></li>
-  <li v-click><span class="marker">β</span><span class="body"><strong>核心发现</strong><span>[你的真实洞察结论]</span></span></li>
-  <li v-click><span class="marker">γ</span><span class="body"><strong>意外发现</strong><span>[往往最有价值 — 揭示"你不知道你不知道"的需求]</span></span></li>
-</ul>
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <div class="editorial__card" v-click>
+      <h3>Listing 卖点</h3>
+      <p>品牌想说什么。</p>
+    </div>
+    <div class="editorial__card" v-click>
+      <h3>Review 优势</h3>
+      <p>用户真的感知到了什么。</p>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>决策方式</h3>
+      <p>把高覆盖优势放进首图、标题、五点、A+ 和广告素材；把低感知优势降级。</p>
+    </div>
+  </div>
+</div>
 
 ---
 layout: editorial
-module: Module 05 · Step 4
-page: 36 / 47
+module: Module 05 · Pain points
+page: 36 / 39
 ---
 
-<h1 class="editorial__headline"><em>出</em><br/>建议</h1>
+<h1 class="editorial__headline">Pain Points：<br/>差评背后是什么？</h1>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;">
-  <div class="editorial__card" v-click>
-    <span class="chip">产品层面</span>
-    <p style="margin-top: 12px;">[具体建议]</p>
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <ul class="editorial__list">
+      <li v-click><span class="marker">1</span><span class="body"><strong>体验缺陷</strong><span>产品真的不好用</span></span></li>
+      <li v-click><span class="marker">2</span><span class="body"><strong>预期落差</strong><span>Listing 让用户误会</span></span></li>
+      <li v-click><span class="marker">3</span><span class="body"><strong>使用门槛</strong><span>说明、安装、剂量、兼容性不清楚</span></span></li>
+    </ul>
   </div>
-  <div class="editorial__card" v-click>
-    <span class="chip">内容层面</span>
-    <p style="margin-top: 12px;">[具体建议]</p>
-  </div>
-  <div class="editorial__card editorial__card--good" v-click style="grid-column: span 2;">
-    <span class="chip">决策结论</span>
-    <p style="margin-top: 12px; font-size: 22px;"><strong>进 / 不进</strong> · 进的话差异化卖点是什么？</p>
+  <div class="editorial__column">
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>先分类，再行动</h3>
+      <p>体验缺陷改产品；预期落差改页面；使用门槛改说明和客服触达。</p>
+    </div>
   </div>
 </div>
 
 ---
 layout: lottie-stage
 variant: paper
-eyebrow: The reveal
-index: 37 / 47
+eyebrow: Case pattern
+index: 37 / 39
 name: 07-case-magnet-fix
-caption: 80% 差评不是音质问题，是磁吸问题。差评率 12% → 3%。
----
-
----
-layout: cinema
-variant: cyan
-eyebrow: Module 05 · The reveal
-index: 38 / 47
----
-
-# 胜败<br/>就在<br/>一个磁吸。
-
----
-layout: cinema
-variant: paper
-eyebrow: Module 06
-index: 39 / 47
----
-
-# 工具<br/>操作演示
-
-<p class="cinema__sub">Live Demo · 10 min · 真刀真枪</p>
-
----
-layout: lottie-stage
-variant: paper
-eyebrow: The tool flow
-index: 40 / 47
-name: 08-tool-assembly-line
-caption: 清洗 → LLM 分析 → 报告生成。3 天的工作变成 3 分钟。
----
-
----
-layout: lottie-stage
-variant: ink
-eyebrow: Switching to live
-index: 41 / 47
-name: 09-demo-intro-badge
+caption: 很多评分问题不是“大质量问题”，而是一个高频摩擦点被反复放大。
 ---
 
 ---
 layout: editorial
-module: Module 06 · Live demo
-page: 42 / 47
+module: Module 05 · Top priorities
+page: 38 / 40
 ---
 
-<h1 class="editorial__headline">现场<br/>演示</h1>
+<h1 class="editorial__headline">Top Priorities：<br/>报告最后看这里。</h1>
 
-<LiveDemo src="http://localhost:8080" title="Amazon Review Insight" height="440px" />
+<div class="editorial__grid">
+  <div class="editorial__column">
+    <p class="editorial__lede">工具会输出前三个建议，但讲师要提醒：这不是命令，是候选动作。</p>
+    <div class="editorial__card" v-click>
+      <h3>Product</h3>
+      <p>结构、材质、配方、配件、包装、说明书。</p>
+    </div>
+  </div>
+  <div class="editorial__column">
+    <div class="editorial__card" v-click>
+      <h3>Marketing</h3>
+      <p>标题、五点、A+、广告角度、人群场景。</p>
+    </div>
+    <div class="editorial__card editorial__card--good" v-click>
+      <h3>Risk</h3>
+      <p>误用提醒、合规表达、售后预案、FAQ。</p>
+    </div>
+  </div>
+</div>
 
 ---
 layout: cinema-quote
 variant: ink
-eyebrow: The honest truth
-index: 43 / 47
+eyebrow: Human judgment
+index: 39 / 40
 ---
 
-工具让你快 10 倍。
+工具负责把评论读快。
 
-但让数据变成决策的，永远是<strong style="font-style: normal; color: var(--cyan);">你的判断力</strong>。
-
----
-layout: cinema
-variant: ink
-eyebrow: Module 07 · Closing
-index: 44 / 47
----
-
-# 收尾
-
-<p class="cinema__sub">Closing the loop · 4 min</p>
-
----
-layout: lottie-stage
-variant: paper
-eyebrow: Back to the opening
-index: 45 / 47
-name: 10-closing-loop
-caption: 老板给你 50 万 → 第一步是什么？
----
-
----
-layout: cinema
-variant: cyan
-eyebrow: The answer
-index: 46 / 47
----
-
-# 先读<br/>竞品评论。
+但把数据变成决策的，永远是<strong style="font-style:normal; color:var(--cyan);">人的判断力</strong>。
 
 ---
 layout: cinema
 variant: ink
 eyebrow: Thanks
-index: 47 / 47
+index: 40 / 40
 ---
 
-# 谢谢。
+# Q&A
 
 <p class="cinema__sub" style="margin-top: 56px;">
-  工具：amazon-review-insight · 课程：Amazon_Review_Analyst_Course<br/>
-  <span style="opacity: 0.55;">Q&amp;A · 2-3 min</span>
+  <span style="opacity: 0.55;">提问，是思考最好的证明。</span>
 </p>

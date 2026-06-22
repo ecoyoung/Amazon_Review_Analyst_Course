@@ -40,6 +40,7 @@ watch(() => props.name, load)
     </div>
 
     <div v-if="caption" class="lottie-stage__caption">{{ caption }}</div>
+    <SessionTimer />
     <div v-if="index" class="cinema__index">{{ index }}</div>
   </div>
 </template>

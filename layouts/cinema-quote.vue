@@ -14,6 +14,7 @@ const props = defineProps<{
         <slot />
       </blockquote>
     </div>
+    <SessionTimer />
     <div v-if="props.index" class="cinema__index">{{ props.index }}</div>
   </div>
 </template>
